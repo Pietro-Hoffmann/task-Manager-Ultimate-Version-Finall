@@ -124,10 +124,10 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Inicializar o modal de edição
+     
       const editModal = new bootstrap.Modal(document.getElementById('editTaskModal'));
       
-      // Adicionar nova tarefa
+      
       document.getElementById('taskForm').addEventListener('submit', async function(e) {
         e.preventDefault();
         
@@ -146,7 +146,7 @@
           
           if (!response.ok) throw new Error('Erro ao criar tarefa');
           
-          // Recarregar a página para mostrar a nova tarefa
+          
           window.location.reload();
         } catch (error) {
           console.error('Erro:', error);
@@ -154,7 +154,7 @@
         }
       });
       
-      // Botões de filtro
+      
       document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.addEventListener('click', function() {
           const filter = this.getAttribute('data-filter');
@@ -162,7 +162,7 @@
         });
       });
       
-      // Marcar tarefa como concluída
+      
       document.querySelectorAll('.complete-btn').forEach(btn => {
         btn.addEventListener('click', async function() {
           const taskId = this.closest('.task-item').getAttribute('data-id');
@@ -182,7 +182,7 @@
         });
       });
       
-      // Excluir tarefa
+     
       document.querySelectorAll('.delete-btn').forEach(btn => {
         btn.addEventListener('click', async function() {
           if (!confirm('Tem certeza que deseja excluir esta tarefa?')) return;
@@ -204,7 +204,7 @@
         });
       });
       
-      // Abrir o modal de edição
+      
       document.querySelectorAll('.edit-btn').forEach(btn => {
         btn.addEventListener('click', async function() {
           const taskItem = this.closest('.task-item');
@@ -217,17 +217,17 @@
             
             const task = await response.json();
             
-            // Preencher o formulário com os dados da tarefa
+           
             document.getElementById('editTaskId').value = task.id;
             document.getElementById('editTaskName').value = task.name;
             document.getElementById('editTaskDescription').value = task.description || '';
             
-            // Formatar a data corretamente
+            
             const dueDate = new Date(task.dueDate);
             const formattedDate = dueDate.toISOString().split('T')[0];
             document.getElementById('editTaskDueDate').value = formattedDate;
             
-            // Exibir o modal
+            
             editModal.show();
           } catch (error) {
             console.error('Erro:', error);
@@ -236,7 +236,7 @@
         });
       });
       
-      // Salvar as edições
+      
       document.getElementById('saveEditBtn').addEventListener('click', async function() {
         const taskId = document.getElementById('editTaskId').value;
         const name = document.getElementById('editTaskName').value;
@@ -259,7 +259,7 @@
           
           if (!response.ok) throw new Error('Erro ao atualizar tarefa');
           
-          // Fechar o modal e recarregar a página
+          
           editModal.hide();
           window.location.reload();
         } catch (error) {

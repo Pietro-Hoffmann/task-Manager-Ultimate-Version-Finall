@@ -22,22 +22,20 @@ const swaggerOptions = {
     ],
   },
   
-  // Usando caminhos absolutos para garantir que os arquivos sejam encontrados
+
   apis: [
     path.join(__dirname, './src/routes/taskRoutes.js'), 
-    // Se você tiver apenas um arquivo específico de rotas, especifique-o diretamente:
-    // path.join(__dirname, './src/controllers/taskController.js'),
-    // path.join(__dirname, './src/models/taskModel.js')
+   
   ]
 };
 
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
 
 const setupSwagger = (app) => {
-  // Interface para a documentação
+ 
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
   
-  // Rota para o arquivo JSON da especificação (útil para depuração)
+  
   app.get('/swagger.json', (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     res.send(swaggerSpec);
